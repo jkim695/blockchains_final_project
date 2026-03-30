@@ -2,12 +2,64 @@
 % Compile with: pdflatex main && bibtex main && pdflatex main && pdflatex main
 
 \documentclass[letterpaper,twocolumn,10pt]{article}
-\usepackage{usenix2019_v3}
+
+% --- USENIX style (inlined) ---
+\usepackage{mathptmx}
+\usepackage[scaled=.92]{helvet}
+\usepackage{courier}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{microtype}
+\usepackage{flushend}
+
+% Page layout
+\setlength{\textheight}{9.0in}
+\setlength{\textwidth}{7.0in}
+\setlength{\columnsep}{0.33in}
+\setlength{\topmargin}{0.0in}
+\setlength{\headheight}{0.0in}
+\setlength{\headsep}{0.0in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\parindent}{1em}
+\setlength{\parskip}{0pt}
+\pagestyle{plain}
+
+% Title formatting
+\makeatletter
+\def\maketitle{\par
+ \begingroup
+   \def\thefootnote{\fnsymbol{footnote}}
+   \def\@makefnmark{\hbox to 0pt{$^{\@thefnmark}$\hss}}
+   \twocolumn[\@maketitle]
+   \@thanks
+ \endgroup
+ \setcounter{footnote}{0}
+ \let\maketitle\relax \let\@maketitle\relax
+ \gdef\@thanks{}\gdef\@author{}\gdef\@title{}\let\thanks\relax}
+\def\@maketitle{\newpage \null
+ \begin{center}{\LARGE\bf \@title}\end{center}
+ \begin{center}\large\bf\lineskip .75em
+ \begin{tabular}[t]{c}\bf\@author \end{tabular}\par
+ \end{center}\par\vskip 0.7em}
+\renewenvironment{abstract}%
+  {\centerline{\large\bf Abstract}%
+   \begin{list}{}{\setlength{\rightmargin}{0.6cm}\setlength{\leftmargin}{0.6cm}}\item[]\ignorespaces}%
+  {\unskip\end{list}}
+\renewcommand{\section}{\@startsection{section}{1}{\z@}%
+  {-3.5ex \@plus -1ex \@minus -.2ex}{2.3ex \@plus.2ex}{\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}{1.5ex \@plus .2ex}{\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}{1.5ex \@plus .2ex}{\normalfont\normalsize\bfseries}}
+\makeatother
+\date{}
+% --- End USENIX style ---
 
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{amsmath,amssymb}
-\usepackage{hyperref}
+\usepackage[breaklinks=true,hidelinks]{hyperref}
 \usepackage{url}
 \usepackage{xcolor}
 \usepackage{tikz}
